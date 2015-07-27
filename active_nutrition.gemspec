@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = Dir["spec/**/*"]
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "activerecord", "~> 3.0"
-  s.add_runtime_dependency "rubyzip", "~> 0.9.4"
-  s.add_runtime_dependency "composite_primary_keys", "~> 5.0.12"
+  s.add_runtime_dependency "activerecord", "~> 4.2.3"
+  s.add_runtime_dependency "rubyzip", "~> 1.1.7"
+  s.add_runtime_dependency "composite_primary_keys", "~> 8.0.0"
 end
