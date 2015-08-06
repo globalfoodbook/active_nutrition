@@ -74,7 +74,7 @@ module ActiveNutrition
       end
 
       def unzip
-        Zip::ZipFile.open(@zip_file) do |zip_file|
+        Zip::File.open(@zip_file) do |zip_file|
           zip_file.each do |f|
             next unless f.file?
             f_path = File.join(@zip_dir, f.name)
