@@ -2,7 +2,7 @@
 
 module ActiveNutrition
   module Migrations
-    class Sr24 < ActiveRecord::Migration
+    class Sr26 < ActiveRecord::Migration
       def self.up
         create_table "abbrev", :primary_key => "NDB_No", :force => true do |t|
           t.string  "Shrt_Desc",                  :limit => 60
