@@ -30,7 +30,7 @@ module ActiveNutrition
       end
 
       def convert_parse(line)
-        parse(Iconv.conv('utf-8', @file_system_encoding, line))
+        parse(Iconv.conv("UTF-8//TRANSLIT//IGNORE", @file_system_encoding, line))
       end
 
       def parse(line)
