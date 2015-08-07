@@ -12,6 +12,7 @@ module ActiveNutrition
 
       def initialize(file)
         @file = file
+        @file_system_encoding = file_system_encoding(file)
         @handle = File.open(file, "r")
       end
 
@@ -29,7 +30,7 @@ module ActiveNutrition
       end
 
       def convert_parse(line)
-        parse(Iconv.conv('utf-8', 'iso-8859-1', line))
+        parse(Iconv.conv('utf-8', @file_system_encoding, line))
       end
 
       def parse(line)
@@ -56,7 +57,7 @@ module ActiveNutrition
               # check to see if its a date, add as a string for now
               p_fields << field
             else
-              p_fields << field.to_i  
+              p_fields << field.to_i
             end
           end
         end
@@ -65,6 +66,10 @@ module ActiveNutrition
         puts line
         puts e.message
         puts e.backtrace
+      end
+
+      def file_system_encoding(file)
+        `file --brief --mime "#{file}" | cut -d '=' -f 2`.strip!
       end
     end
   end
