@@ -5,7 +5,7 @@ module ActiveNutrition
     class Sr26 < ActiveRecord::Migration
       def self.up
         create_table "abbrev", :primary_key => "NDB_No", :force => true do |t|
-          t.string  "Shrt_Desc",                  :limit => 60
+          t.string  "Shrt_Desc",                  :limit => 250
           t.float   "Water"
           t.integer "Energ_Kcal"
           t.float   "Protein"
@@ -53,9 +53,9 @@ module ActiveNutrition
           t.float   "FA_Poly",                    :default => 0.0
           t.integer "Cholestrl"
           t.float   "GmWt_1"
-          t.string  "GmWt_Desc1",                 :limit => 120
+          t.string  "GmWt_Desc1",                 :limit => 250
           t.float   "GmWt_2",                     :default => 0.0
-          t.string  "GmWt_Desc2",                 :limit => 120
+          t.string  "GmWt_Desc2",                 :limit => 250
           t.integer "Refuse_Pct"
         end
 
@@ -67,7 +67,7 @@ module ActiveNutrition
           t.string "Authors"
           t.string "Title"
           t.string "Year",        :limit => 4
-          t.string "Journal",     :limit => 135
+          t.string "Journal",     :limit => 250
           t.string "Vol_city",    :limit => 16
           t.string "Issue_State", :limit => 5
           t.string "Start_Page",  :limit => 5
@@ -87,23 +87,23 @@ module ActiveNutrition
         #create_table "deriv_cd", :primary_key => "Deriv_CD", :force => true do |t|
         create_table "deriv_cd", :id => false, :primary_key => "Deriv_CD", :force => true do |t|
           t.integer "Deriv_CD"
-          t.string "Deriv_Desc", :limit => 120
+          t.string "Deriv_Desc", :limit => 250
         end
 
         add_index "deriv_cd", ["Deriv_CD"], :name => "Deriv_CD_Deriv_CD_Index"
 
         create_table "fd_group", :primary_key => "FdGrp_CD", :force => true do |t|
-          t.string "FdGrp_Desc", :limit => 60
+          t.string "FdGrp_Desc", :limit => 250
         end
 
         create_table "food_des", :primary_key => "NDB_No", :force => true do |t|
           t.string  "FdGrp_Cd",    :limit => 4
-          t.string  "Long_Desc",   :limit => 200
-          t.string  "Shrt_Desc",   :limit => 60
+          t.string  "Long_Desc",   :limit => 250
+          t.string  "Shrt_Desc",   :limit => 250
           t.string  "ComName",     :limit => 100
           t.string  "ManufacName", :limit => 65
           t.string  "Survey",      :limit => 1
-          t.string  "Ref_Desc",    :limit => 135
+          t.string  "Ref_Desc",    :limit => 250
           t.integer "Refuse"
           t.string  "SciName",     :limit => 65
           t.float   "N_Factor"
@@ -117,7 +117,7 @@ module ActiveNutrition
           t.integer "Footnt_No"
           t.string  "Footnot_Typ", :limit => 1
           t.integer "Nutr_No"
-          t.string  "Footnot_Txt", :limit => 200
+          t.string  "Footnot_Txt", :limit => 250
         end
 
         create_table "langdesc", :id => false, :primary_key => "Factor_Code", :force => true do |t|
@@ -162,7 +162,7 @@ module ActiveNutrition
         create_table "nutr_def", :primary_key => "Nutr_No", :force => true do |t|
           t.string "Units",    :limit => 7
           t.string "Tagname",  :limit => 20
-          t.string "NutrDesc", :limit => 60
+          t.string "NutrDesc", :limit => 250
           t.string "Num_Dec",  :limit => 1
           t.float  "SR_Order"
         end
@@ -170,14 +170,14 @@ module ActiveNutrition
         add_index "nutr_def", ["Num_Dec"], :name => "Num_Dec_Index"
 
         create_table "src_cd", :primary_key => "Src_Cd", :force => true do |t|
-          t.string "SrcCd_Desc", :limit => 60
+          t.string "SrcCd_Desc", :limit => 250
         end
 
         create_table "weight", :id => false, :primary_key => "NDB_No", :force => true do |t|
           t.integer "NDB_No",       :null => false
           t.integer "Seq",          :null => false
           t.float   "Amount"
-          t.string  "Msre_Desc",    :limit => 80
+          t.string  "Msre_Desc",    :limit => 250
           t.float   "Gm_Wgt"
           t.integer "Num_Data_Pts"
           t.float   "Std_Dev"
