@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'iconv'
 
 module ActiveNutrition
   module Utilities
@@ -16,7 +17,7 @@ module ActiveNutrition
 
       def each
         @handle.each do |line|
-          yield self.parse_line(line)
+          yield self.convert_parse(line)
         end
         self.clean_up
       end
@@ -27,9 +28,11 @@ module ActiveNutrition
         @handle.close
       end
 
-      def parse_line(line)
-        line.force_encoding("ISO-8859-1")
-        #line.byte_size = 8
+      def convert_parse(line)
+        parse(Iconv.conv('utf-8', 'iso-8859-1', line))
+      end
+
+      def parse(line)
         line.chomp!("\r\n")
         fields = line.split('^')
         p_fields = []
