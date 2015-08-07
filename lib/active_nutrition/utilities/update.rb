@@ -68,7 +68,7 @@ module ActiveNutrition
           FileUtils.mkdir_p(DATA_DIR)
           File.open(File.join(DATA_DIR, @file), "wb") do |f|
             f.sync = true
-            f.write(open("#{BASE_URL}#{@path}#{@file}").read)
+            f.write(open(download_url).read)
           end
         end
       end
@@ -94,6 +94,10 @@ module ActiveNutrition
         end
 
         [BASE_PATH.gsub("{{release}}", @release), file.gsub("{{release}}", @release)]
+      end
+
+      def download_url
+        "#{BASE_URL}#{@path}#{@file}"
       end
     end
   end
